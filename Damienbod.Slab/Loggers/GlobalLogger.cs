@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 
-
 namespace Damienbod.Slab.Loggers
 {
     [EventSource(Name = "GlobalLogger")]
@@ -54,7 +53,4 @@ namespace Damienbod.Slab.Loggers
             if (IsEnabled()) WriteEvent(GlobalType.GlobalWarning, message);
         }
     }
-
-
-
 }

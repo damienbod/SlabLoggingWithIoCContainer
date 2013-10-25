@@ -53,7 +53,4 @@ namespace Damienbod.Slab.Loggers
             if (IsEnabled()) WriteEvent(WebType.ControllerWarning, message);
         }
     }
-
-
-
 }

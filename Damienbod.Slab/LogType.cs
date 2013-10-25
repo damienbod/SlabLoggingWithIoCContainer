@@ -9,7 +9,6 @@
         public const int GlobalLogAlways = 4;
         public const int GlobalVerbose = 5;
         public const int GlobalWarning = 6;
-
     }
 
     public class WebType
