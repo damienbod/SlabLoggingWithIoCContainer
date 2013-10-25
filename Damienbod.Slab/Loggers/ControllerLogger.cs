@@ -2,23 +2,20 @@
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 
-
 namespace Damienbod.Slab.Loggers
 {
     [EventSource(Name = "ControllerLogger")]
     public class ControllerLogger : EventSource
     {
-        public static void RegisterLogger(Dictionary<int, Action<string>> exectueLogDict)
+        public void RegisterLogger(Dictionary<int, Action<string>> exectueLogDict)
         {
-            exectueLogDict.Add(WebType.ControllerCritical, Logger.Critical);
-            exectueLogDict.Add(WebType.ControllerError, Logger.Error);
-            exectueLogDict.Add(WebType.ControllerInformational, Logger.Informational);
-            exectueLogDict.Add(WebType.ControllerLogAlways, Logger.LogAlways);
-            exectueLogDict.Add(WebType.ControllerVerbose, Logger.Verbose);
-            exectueLogDict.Add(WebType.ControllerWarning, Logger.Warning);
+            exectueLogDict.Add(WebType.ControllerCritical, Critical);
+            exectueLogDict.Add(WebType.ControllerError, Error);
+            exectueLogDict.Add(WebType.ControllerInformational, Informational);
+            exectueLogDict.Add(WebType.ControllerLogAlways, LogAlways);
+            exectueLogDict.Add(WebType.ControllerVerbose, Verbose);
+            exectueLogDict.Add(WebType.ControllerWarning, Warning);
         }
-
-        private static readonly ControllerLogger Logger = new ControllerLogger();
 
         [Event(WebType.ControllerCritical, Message = "Controller Critical: {0}", Level = EventLevel.Critical)]
         public void Critical(string message)

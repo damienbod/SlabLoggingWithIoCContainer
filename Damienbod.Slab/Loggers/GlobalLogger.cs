@@ -8,17 +8,15 @@ namespace Damienbod.Slab.Loggers
     [EventSource(Name = "GlobalLogger")]
     public class GlobalLogger : EventSource
     {
-        public static void RegisterLogger(Dictionary<int, Action<string>> exectueLogDict)
+        public void RegisterLogger(Dictionary<int, Action<string>> exectueLogDict)
         {
-            exectueLogDict.Add(GlobalType.GlobalCritical, Logger.Critical);
-            exectueLogDict.Add(GlobalType.GlobalError, Logger.Error);
-            exectueLogDict.Add(GlobalType.GlobalInformational, Logger.Informational);
-            exectueLogDict.Add(GlobalType.GlobalLogAlways, Logger.LogAlways);
-            exectueLogDict.Add(GlobalType.GlobalVerbose, Logger.Verbose);
-            exectueLogDict.Add(GlobalType.GlobalWarning, Logger.Warning);
+            exectueLogDict.Add(GlobalType.GlobalCritical, Critical);
+            exectueLogDict.Add(GlobalType.GlobalError, Error);
+            exectueLogDict.Add(GlobalType.GlobalInformational, Informational);
+            exectueLogDict.Add(GlobalType.GlobalLogAlways, LogAlways);
+            exectueLogDict.Add(GlobalType.GlobalVerbose, Verbose);
+            exectueLogDict.Add(GlobalType.GlobalWarning, Warning);
         }
-
-        private static readonly GlobalLogger Logger = new GlobalLogger();
 
         [Event(GlobalType.GlobalCritical, Message = "Global Critical: {0}", Level = EventLevel.Critical)]
         public void Critical(string message)

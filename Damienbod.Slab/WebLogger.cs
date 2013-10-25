@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Damienbod.Slab.Loggers;
-using Microsoft.Build.Framework;
 
 namespace Damienbod.Slab
 {
@@ -16,10 +15,12 @@ namespace Damienbod.Slab
 
         private void RegisterLog()
         {
-            GlobalLogger.RegisterLogger(_exectueLogDict);
-            ControllerLogger.RegisterLogger(_exectueLogDict);
-        }
+            var globalLogger = new GlobalLogger();
+            globalLogger.RegisterLogger(_exectueLogDict);
 
+            var controllerLogger = new ControllerLogger();
+            controllerLogger.RegisterLogger(_exectueLogDict);
+        }
 
         public void Log(int log, string message)
         {
@@ -28,8 +29,8 @@ namespace Damienbod.Slab
                 _exectueLogDict[log].Invoke(message);
                 return;
             }
-            
-            //GlobalLogger.Logger.Warning("log Id does not exist: " + log);
+
+            _exectueLogDict[GlobalType.GlobalWarning].Invoke(message);
         }
     }
 }
